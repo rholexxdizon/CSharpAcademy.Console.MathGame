@@ -1,9 +1,4 @@
 ﻿using MathGame.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathGame
 {
@@ -14,7 +9,7 @@ namespace MathGame
 
         internal static string GetName()
         {
-            Console.WriteLine("Please enter your name: ");
+            Console.Write("Please enter your name: ");
             string name = Console.ReadLine();
 
             while (string.IsNullOrEmpty(name))
@@ -62,6 +57,7 @@ namespace MathGame
             Console.ReadKey();
         }
 
+        
         internal static int[] GetNumbers(GameType gameType, GameDifficulty difficulty)
         {
             Random random = new Random();

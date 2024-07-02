@@ -1,11 +1,4 @@
 ﻿using MathGame.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MathGame
 {
     internal class GameEngine
@@ -14,12 +7,11 @@ namespace MathGame
         internal void AdditionGame(string name, GameDifficulty difficulty, int rounds)
         {
             Console.Clear();
-            Console.WriteLine(name);
 
             int score = 0;
+
             for (int i = 1; i <= rounds; i++)
             {
-
                 int[] numbers = Helpers.GetNumbers(GameType.Addition, difficulty);
 
                 Console.WriteLine($"{name}: {numbers[0]} + {numbers[1]}");
@@ -39,7 +31,6 @@ namespace MathGame
                 Console.ReadKey();
                 Console.Clear();
             }
-
             Console.WriteLine($"Game Over! Your score is: {score}pts out of {rounds}pts.");
             Console.WriteLine("Press any key to return to Main Menu.");
             Helpers.AddToRecords(score, GameType.Addition, rounds, difficulty);
@@ -49,28 +40,29 @@ namespace MathGame
         internal void SubtractionGame(string name, GameDifficulty difficulty, int rounds)
         {
             Console.Clear();
-            Console.WriteLine(name);
 
             int score = 0;
-            int[] numbers = Helpers.GetNumbers(GameType.Subtraction, difficulty);
-            Console.WriteLine($"{name}: {numbers[0]} - {numbers[1]}");
-            var answer = Console.ReadLine();
-            answer = Helpers.ValidateResult(answer);
-
-            if (int.Parse(answer) == numbers[0] - numbers[1])
+            
+            for (int i = 1; i<= rounds; i++)
             {
-                Console.WriteLine("Your answer was correct!");
-                score++;
-            }
-            else
-            {
-                Console.WriteLine("You answer was incorrect!");
-            }
-            Console.WriteLine("Press any key to continue..");
-            Console.ReadKey();
-            Console.Clear();
-        
+                int[] numbers = Helpers.GetNumbers(GameType.Subtraction, difficulty);
+                Console.WriteLine($"{name}: {numbers[0]} - {numbers[1]}");
+                var answer = Console.ReadLine();
+                answer = Helpers.ValidateResult(answer);
 
+                if (int.Parse(answer) == numbers[0] - numbers[1])
+                {
+                    Console.WriteLine("Your answer was correct!");
+                    score++;
+                }
+                else
+                {
+                    Console.WriteLine("You answer was incorrect!");
+                }
+                Console.WriteLine("Press any key to continue..");
+                Console.ReadKey();
+                Console.Clear();
+            }
             Console.WriteLine($"Game Over! Your score is: {score}pts out of {rounds}pts.");
             Console.WriteLine("Press any key to return to Main Menu.");
             Helpers.AddToRecords(score, GameType.Subtraction, rounds, difficulty);
@@ -80,28 +72,29 @@ namespace MathGame
         internal void MultiplicationGame(string name, GameDifficulty difficulty, int rounds)
         {
             Console.Clear();
-            Console.WriteLine(name);
 
             int score = 0;
-            int[] numbers = Helpers.GetNumbers(GameType.Multiplication, difficulty);
-            Console.WriteLine($"{name}: {numbers[0]} * {numbers[1]}");
-            var answer = Console.ReadLine();
-            answer = Helpers.ValidateResult(answer);
 
-            if (int.Parse(answer) == numbers[0] * numbers[1])
-            {
-                    Console.WriteLine("Your answer was correct!");
-                    score++;
-            }
-            else
-            {
-                Console.WriteLine("You answer was incorrect!");
-            }
-            Console.WriteLine("Press any key to continue..");
-            Console.ReadKey();
-            Console.Clear();
-            
+            for (int i = 1; i <= rounds; i++) 
+            { 
+                int[] numbers = Helpers.GetNumbers(GameType.Multiplication, difficulty);
+                Console.WriteLine($"{name}: {numbers[0]} * {numbers[1]}");
+                var answer = Console.ReadLine();
+                answer = Helpers.ValidateResult(answer);
 
+                if (int.Parse(answer) == numbers[0] * numbers[1])
+                {
+                        Console.WriteLine("Your answer was correct!");
+                        score++;
+                }
+                else
+                {
+                    Console.WriteLine("You answer was incorrect!");
+                }
+                Console.WriteLine("Press any key to continue..");
+                Console.ReadKey();
+                Console.Clear();
+            }
             Console.WriteLine($"Game Over! Your score is: {score}pts out of {rounds}pts.");
             Console.WriteLine("Press any key to return to Main Menu.");
             Helpers.AddToRecords(score, GameType.Multiplication, rounds, difficulty);
@@ -111,36 +104,33 @@ namespace MathGame
         internal void DivisionGame(string name, GameDifficulty difficulty, int rounds)
         {
             Console.Clear();
-            Console.WriteLine(name);
 
             int score = 0;
-
-            int[] numbers = Helpers.GetNumbers(GameType.Division, difficulty);
-            Console.WriteLine($"{name}: {numbers[0]} / {numbers[1]}");
-            var answer = Console.ReadLine();
-            answer = Helpers.ValidateResult(answer);
-
-            if (int.Parse(answer) == numbers[0] / numbers[1])
+            for (int i = 1; i < rounds; i++)
             {
+                int[] numbers = Helpers.GetNumbers(GameType.Division, difficulty);
+                Console.WriteLine($"{name}: {numbers[0]} / {numbers[1]}");
+                var answer = Console.ReadLine();
+                answer = Helpers.ValidateResult(answer);
+
+                if (int.Parse(answer) == numbers[0] / numbers[1])
+                {
                     Console.WriteLine("Your answer was correct!");
                     score++;
+                }
+                else
+                {
+                    Console.WriteLine("You answer was incorrect!");
+                }
+                Console.WriteLine("Press any key to continue..");
+                Console.ReadKey();
+                Console.Clear();
             }
-            else
-            {
-                Console.WriteLine("You answer was incorrect!");
-            }
-            Console.WriteLine("Press any key to continue..");
-            Console.ReadKey();
-            Console.Clear();
-            
 
             Console.WriteLine($"Game Over! Your score is: {score}pts out of {rounds}pts.");
             Console.WriteLine("Press any key to return to Main Menu.");
             Helpers.AddToRecords(score, GameType.Division, rounds, difficulty);
             Console.Clear();
-        }
-
-       
-        
+        }   
     }
 }

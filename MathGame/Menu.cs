@@ -1,9 +1,4 @@
 ﻿using MathGame.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MathGame
 {
@@ -23,8 +18,8 @@ namespace MathGame
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Hello {name.ToUpper()}! Welcome to the math game. It is {date}.");
-                Console.WriteLine("------------------------------------------------------------------");
+                Console.WriteLine($"Hello {name.ToUpper()}! Welcome to the Math Game. It is {date.ToString("dd MMM yyyy hh:mm tt PHT")}.");
+                Console.WriteLine("----------------------------------------------------------------------");
                 Console.WriteLine($@"
 What game would you like to play today? Choose from the options below:
 A - Addition
@@ -33,9 +28,11 @@ M - Multiplication
 D - Divison
 Q - Quit Game
 R - Show History
-");             
+");
+                Console.WriteLine("----------------------------------------------------------------------");
+                Console.Write("Select Game: ");
                 string gameSelected = Console.ReadLine().ToLower().Trim();
-
+                
                 switch(gameSelected)
                 {
                     case "a":
@@ -65,15 +62,55 @@ R - Show History
                         QuitGame();
                         isGameOn = false;
                         break;
-                    
                 }
             }
             while (isGameOn);
         }
         private void QuitGame()
         {
-            Console.WriteLine("Good bye!");
+            Console.Clear();
+            Console.WriteLine("Thank you for playing! Good bye!");
             Environment.Exit(0);
+        }
+        internal GameDifficulty GetDifficulty()
+        {
+            Console.Clear();
+            GameDifficulty result = new GameDifficulty();
+
+            bool isRoundsOn = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("----------------------------------------------------------------------");
+                Console.WriteLine($@"Please select a difficulty level:
+1. Easy 
+2. Medium
+3. Hard");
+                Console.WriteLine("----------------------------------------------------------------------");
+                Console.Write("Select Difficulty: ");
+                
+                string difficultyInput = Console.ReadLine().ToLower().Trim();
+                isRoundsOn = true;
+
+                switch (difficultyInput)
+                {
+                    case "1":
+                        result = GameDifficulty.Easy;
+                        isRoundsOn = false;
+                        break;
+                    case "2":
+                        result = GameDifficulty.Medium;
+                        isRoundsOn = false;
+                        break;
+                    case "3":
+                        result = GameDifficulty.Hard;
+                        isRoundsOn = false;
+                        break;
+                }
+
+            }
+            while (isRoundsOn);
+            return result;
         }
 
         internal int GetRounds()
@@ -82,6 +119,7 @@ R - Show History
 
             int roundsInput;
             Console.WriteLine("How many rounds would you like to play?");
+            Console.Write("Input Rounds: ");
             string rounds = Console.ReadLine();
 
             while (string.IsNullOrEmpty(rounds) || !Int32.TryParse(rounds, out roundsInput))
@@ -91,43 +129,7 @@ R - Show History
                 Console.WriteLine("How many rounds would you like to play?");
                 rounds = Console.ReadLine();
             }
-
             return roundsInput;
-        }
-
-        internal GameDifficulty GetDifficulty()
-        {
-
-            Console.Clear();
-            GameDifficulty result = new GameDifficulty();
-            bool isRoundsOn = true;
-            Console.WriteLine($@"
-Please select a difficulty level:
-1. Easy
-2. Medium
-3. Hard");
-
-            do
-            {
-                string difficultyInput = Console.ReadLine().ToLower().Trim();
-                isRoundsOn = true;
-
-                switch (difficultyInput)
-                {
-                    case "1":
-                        result = GameDifficulty.Easy;
-                        break;
-                    case "2":
-                        result = GameDifficulty.Medium;
-                        break;
-                    case "3":
-                        result = GameDifficulty.Hard;
-                        break;
-                }
-
-            }
-            while (!isRoundsOn);
-            return result;
         }
     }
 }

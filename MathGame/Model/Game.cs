@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MathGame.Model
+﻿namespace MathGame.Model
 {
     internal class Records
     {
@@ -12,11 +6,8 @@ namespace MathGame.Model
         internal DateTime Date { get; set; }
         internal GameType Type { get; set; }
         internal GameDifficulty Difficulty { get; set; }
-
         internal int Rounds { get; set; }
-        
     }
-
     internal enum GameType
     {
         Addition,
@@ -29,7 +20,5 @@ namespace MathGame.Model
         Easy,
         Medium,
         Hard
-    }
-
-    
+    }   
 }
