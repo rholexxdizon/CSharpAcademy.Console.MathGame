@@ -1,7 +1,6 @@
-﻿
-using MathGame;
-
+﻿using MathGame;
 
 var name = Helpers.GetName();
 var date = DateTime.UtcNow;
-var menu = new Menu();
+Menu menu = new();
+menu.ShowMenu(name, date);
