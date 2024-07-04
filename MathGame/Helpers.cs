@@ -57,7 +57,6 @@ namespace MathGame
             Console.ReadKey();
         }
 
-        
         internal static int[] GetNumbers(GameType gameType, GameDifficulty difficulty)
         {
             Random random = new Random();
@@ -66,102 +65,79 @@ namespace MathGame
             switch(gameType)
             {
                 case GameType.Addition:
-                    if (difficulty == GameDifficulty.Easy)
-                    {
-                        numbers[0] = random.Next(1, 9);
-                        numbers[1] = random.Next(1, 9);
-                    }
-
-                    else if (difficulty == GameDifficulty.Medium)
-                    {
-                        numbers[0] = random.Next(1, 99);
-                        numbers[1] = random.Next(1, 99);
-                    }
-
-                    else
-                    {
-                        numbers[0] = random.Next(1, 500);
-                        numbers[1] = random.Next(1, 500);
-                    }
+                    GetNumbersIf(difficulty, random, numbers);
                     break;
 
+
                 case GameType.Subtraction:
-                    if (difficulty == GameDifficulty.Easy)
-                    {
-                        numbers[0] = random.Next(1, 9);
-                        numbers[1] = random.Next(1, 9);
-                    }
-
-                    else if (difficulty == GameDifficulty.Medium)
-                    {
-                        numbers[0] = random.Next(1, 99);
-                        numbers[1] = random.Next(1, 99);
-                    }
-
-                    else
-                    {
-                        numbers[0] = random.Next(1, 500);
-                        numbers[1] = random.Next(1, 500);
-                    }
+                    GetNumbersIf(difficulty, random, numbers);
                     break;
 
                 case GameType.Multiplication:
-                    if (difficulty == GameDifficulty.Easy)
-                    {
-                        numbers[0] = random.Next(1, 9);
-                        numbers[1] = random.Next(1, 9);
-                    }
-
-                    else if (difficulty == GameDifficulty.Medium)
-                    {
-                        numbers[0] = random.Next(1, 99);
-                        numbers[1] = random.Next(1, 99);
-                    }
-
-                    else
-                    {
-                        numbers[0] = random.Next(1, 500);
-                        numbers[1] = random.Next(1, 500);
-                    }
+                    GetNumbersIf(difficulty, random, numbers);
                     break;
 
                 case GameType.Division:
-
-                    
-                    if (difficulty == GameDifficulty.Easy)
-                    {
-                        do
-                        {
-                            numbers[0] = random.Next(1, 9);
-                            numbers[1] = random.Next(1, 9);
-                        }
-                        while (numbers[0] % numbers[1] != 0);
-                        
-                    }
-
-                    else if (difficulty == GameDifficulty.Medium)
-                    {
-                        do
-                        {
-                            numbers[0] = random.Next(1, 90);
-                            numbers[1] = random.Next(1, 90);
-                        }
-                        while (numbers[0] % numbers[1] != 0);
-                    }
-
-                    else
-                    {
-                        do
-                        {
-                            numbers[0] = random.Next(1, 500);
-                            numbers[1] = random.Next(1, 500);
-                        }
-                        while (numbers[0] % numbers[1] != 0);
-                    }
+                    GetNumbersIfDiv(difficulty, random, numbers);
                     break; 
             }
             return numbers;
 
+        }
+
+        private static void GetNumbersIf(GameDifficulty difficulty, Random random, int[] numbers)
+        {
+            if (difficulty == GameDifficulty.Easy)
+            {
+                numbers[0] = random.Next(1, 9);
+                numbers[1] = random.Next(1, 9);
+            }
+
+            else if (difficulty == GameDifficulty.Medium)
+            {
+                numbers[0] = random.Next(1, 99);
+                numbers[1] = random.Next(1, 99);
+            }
+
+            else
+            {
+                numbers[0] = random.Next(1, 500);
+                numbers[1] = random.Next(1, 500);
+            }
+        }
+
+        private static void GetNumbersIfDiv(GameDifficulty difficulty, Random random, int[] numbers)
+        {
+            if (difficulty == GameDifficulty.Easy)
+            {
+                do
+                {
+                    numbers[0] = random.Next(1, 9);
+                    numbers[1] = random.Next(1, 9);
+                }
+                while (numbers[0] % numbers[1] != 0);
+
+            }
+
+            else if (difficulty == GameDifficulty.Medium)
+            {
+                do
+                {
+                    numbers[0] = random.Next(1, 90);
+                    numbers[1] = random.Next(1, 90);
+                }
+                while (numbers[0] % numbers[1] != 0);
+            }
+
+            else
+            {
+                do
+                {
+                    numbers[0] = random.Next(1, 9);
+                    numbers[1] = random.Next(1, 9);
+                }
+                while (numbers[0] % numbers[1] != 0);
+            }
         }
     }
 }
